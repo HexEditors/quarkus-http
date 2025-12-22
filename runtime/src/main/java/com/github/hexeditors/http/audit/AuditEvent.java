@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.audit;
+package io.github.hexeditors.http.audit;
 
 import lombok.Builder;
 import lombok.Value;

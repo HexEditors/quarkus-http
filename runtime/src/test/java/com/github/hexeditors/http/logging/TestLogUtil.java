@@ -1,8 +1,8 @@
-package com.github.hexeditors.http.logging;
+package io.github.hexeditors.http.logging;
 
-import com.github.hexeditors.http.pii.PiiClassifier;
-import com.github.hexeditors.http.pii.PiiLevel;
-import com.github.hexeditors.http.pii.RegexPiiDetector;
+import io.github.hexeditors.http.pii.PiiClassifier;
+import io.github.hexeditors.http.pii.PiiLevel;
+import io.github.hexeditors.http.pii.RegexPiiDetector;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

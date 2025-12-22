@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.api;
+package io.github.hexeditors.http.api;
 
 import org.junit.jupiter.api.Test;
 

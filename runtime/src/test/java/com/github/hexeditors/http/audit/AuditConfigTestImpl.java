@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.audit;
+package io.github.hexeditors.http.audit;
 
 public class AuditConfigTestImpl implements AuditConfig {
 

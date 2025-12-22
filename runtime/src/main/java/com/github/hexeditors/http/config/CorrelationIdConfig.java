@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.config;
+package io.github.hexeditors.http.config;
 
 import io.smallrye.config.ConfigMapping;
 

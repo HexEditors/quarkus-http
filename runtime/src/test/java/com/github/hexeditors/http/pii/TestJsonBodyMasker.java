@@ -1,7 +1,7 @@
-package com.github.hexeditors.http.pii;
+package io.github.hexeditors.http.pii;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.hexeditors.http.TestInjectionUtil;
+import io.github.hexeditors.http.TestInjectionUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

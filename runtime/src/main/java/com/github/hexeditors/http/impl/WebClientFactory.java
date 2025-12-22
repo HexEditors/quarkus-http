@@ -1,7 +1,7 @@
-package com.github.hexeditors.http.impl;
+package io.github.hexeditors.http.impl;
 
-import com.github.hexeditors.http.config.HttpClientConfig;
-import com.github.hexeditors.http.config.TlsConfig;
+import io.github.hexeditors.http.config.HttpClientConfig;
+import io.github.hexeditors.http.config.TlsConfig;
 import io.vertx.core.net.ProxyOptions;
 import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.mutiny.core.Vertx;

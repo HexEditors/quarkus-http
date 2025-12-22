@@ -1,4 +1,4 @@
-package com.github.hexeditors.http;
+package io.github.hexeditors.http;
 
 import java.lang.reflect.Field;
 

@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.util;
+package io.github.hexeditors.http.util;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;

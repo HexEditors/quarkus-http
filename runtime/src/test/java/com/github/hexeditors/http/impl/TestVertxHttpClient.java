@@ -1,6 +1,6 @@
-package com.github.hexeditors.http.impl;
+package io.github.hexeditors.http.impl;
 
-import com.github.hexeditors.http.api.HttpResponse;
+import io.github.hexeditors.http.api.HttpResponse;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import io.quarkus.test.junit.QuarkusTest;

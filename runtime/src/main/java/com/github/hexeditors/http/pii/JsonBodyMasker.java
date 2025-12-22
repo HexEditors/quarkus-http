@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.pii;
+package io.github.hexeditors.http.pii;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;

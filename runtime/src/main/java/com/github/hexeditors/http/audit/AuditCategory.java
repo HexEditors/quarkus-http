@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.audit;
+package io.github.hexeditors.http.audit;
 
 /**
  * Enumeration of audit categories for compliance purposes.

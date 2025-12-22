@@ -1,6 +1,6 @@
-package com.github.hexeditors.http.util;
+package io.github.hexeditors.http.util;
 
-import com.github.hexeditors.http.config.CorrelationIdConfig;
+import io.github.hexeditors.http.config.CorrelationIdConfig;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.slf4j.MDC;

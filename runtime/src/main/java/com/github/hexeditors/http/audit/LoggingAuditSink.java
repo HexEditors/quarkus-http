@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.audit;
+package io.github.hexeditors.http.audit;
 
 import com.google.common.flogger.FluentLogger;
 import jakarta.enterprise.context.ApplicationScoped;

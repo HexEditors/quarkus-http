@@ -1,12 +1,12 @@
-package com.github.hexeditors.http.impl;
+package io.github.hexeditors.http.impl;
 
-import com.github.hexeditors.http.api.HttpClient;
-import com.github.hexeditors.http.api.HttpResponse;
-import com.github.hexeditors.http.audit.AuditPublisher;
-import com.github.hexeditors.http.config.HttpClientConfig;
-import com.github.hexeditors.http.logging.LogUtil;
-import com.github.hexeditors.http.pii.*;
-import com.github.hexeditors.http.util.CorrelationIdUtil;
+import io.github.hexeditors.http.api.HttpClient;
+import io.github.hexeditors.http.api.HttpResponse;
+import io.github.hexeditors.http.audit.AuditPublisher;
+import io.github.hexeditors.http.config.HttpClientConfig;
+import io.github.hexeditors.http.logging.LogUtil;
+import io.github.hexeditors.http.pii.*;
+import io.github.hexeditors.http.util.CorrelationIdUtil;
 import com.google.common.flogger.FluentLogger;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.mutiny.ext.web.client.WebClient;

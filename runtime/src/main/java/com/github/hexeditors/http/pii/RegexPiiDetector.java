@@ -1,4 +1,4 @@
-package com.github.hexeditors.http.pii;
+package io.github.hexeditors.http.pii;
 
 import jakarta.enterprise.context.ApplicationScoped;
 

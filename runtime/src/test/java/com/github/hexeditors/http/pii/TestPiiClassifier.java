@@ -1,6 +1,6 @@
-package com.github.hexeditors.http.pii;
+package io.github.hexeditors.http.pii;
 
-import com.github.hexeditors.http.TestInjectionUtil;
+import io.github.hexeditors.http.TestInjectionUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

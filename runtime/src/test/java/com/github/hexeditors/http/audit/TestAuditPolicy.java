@@ -1,6 +1,6 @@
-package com.github.hexeditors.http.audit;
+package io.github.hexeditors.http.audit;
 
-import com.github.hexeditors.http.pii.PiiLevel;
+import io.github.hexeditors.http.pii.PiiLevel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.hexeditors</groupId>
+        <groupId>io.github.hexeditors</groupId>
         <artifactId>quarkus-http</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
