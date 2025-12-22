@@ -1,0 +1,52 @@
+name: Release Prepare
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'pom.xml'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Extract current revision
+      id: extract
+      run: |
+        CURRENT_REVISION=$(grep -oP '<revision>\K[^<]+' pom.xml)
+        echo "Current revision: $CURRENT_REVISION"
+        echo "current_revision=$CURRENT_REVISION" >> $GITHUB_OUTPUT
+
+    - name: Calculate release version
+      id: release
+      run: |
+        CURRENT="${{ steps.extract.outputs.current_revision }}"
+        # Assume format x.y.z-SNAPSHOT, release as x.y.z
+        RELEASE_VERSION="${CURRENT%-SNAPSHOT}"
+        echo "Release version: $RELEASE_VERSION"
+        echo "release_version=$RELEASE_VERSION" >> $GITHUB_OUTPUT
+
+    - name: Update pom.xml to release version
+      run: |
+        sed -i "s|<revision>${{ steps.extract.outputs.current_revision }}</revision>|<revision>${{ steps.release.outputs.release_version }}</revision>|" pom.xml
+
+    - name: Update SCM tag to release
+      run: |
+        sed -i "s|<tag>HEAD</tag>|<tag>v${{ steps.release.outputs.release_version }}</tag>|" pom.xml
+
+    - name: Commit release version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add pom.xml
+        git commit -m "Prepare release version ${{ steps.release.outputs.release_version }}" || echo "No changes to commit"
+        git push
