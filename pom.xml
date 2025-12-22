@@ -28,6 +28,9 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Java version -->
+        <java.version>17</java.version>
+
         <!-- Quarkus -->
         <quarkus.version>3.8.4</quarkus.version>
 
@@ -42,6 +45,7 @@
 
         <!-- Build tool versions -->
         <jacoco.version>0.8.11</jacoco.version>
+        <jacoco.coverage.minimum>0.80</jacoco.coverage.minimum>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 
