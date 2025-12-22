@@ -8,7 +8,7 @@
     <!-- Coordinates -->
     <groupId>io.github.hexeditors</groupId>
     <artifactId>quarkus-http</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- Required metadata for Maven Central -->
@@ -24,25 +24,39 @@
 
     <!-- Properties -->
     <properties>
+        <revision>1.0.1-SNAPSHOT</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java version -->
+        <java.version>17</java.version>
 
         <!-- Quarkus -->
         <quarkus.version>3.8.4</quarkus.version>
 
-        <!-- Dependency versions -->
+        <!-- Third-party dependency versions -->
         <lombok.version>1.18.32</lombok.version>
         <flogger.version>0.7.4</flogger.version>
         <mockito.version>5.11.0</mockito.version>
+        <wiremock.version>2.35.0</wiremock.version>
+        <vertx.version>4.5.7</vertx.version>
+        <smallrye.mutiny.vertx.web.client.version>3.13.0</smallrye.mutiny.vertx.web.client.version>
+        <smallrye.fault.tolerance.api.version>6.2.0</smallrye.fault.tolerance.api.version>
+
+        <!-- Build tool versions -->
         <jacoco.version>0.8.11</jacoco.version>
+        <jacoco.coverage.minimum>0.80</jacoco.coverage.minimum>
+        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 
         <!-- Plugin versions -->
         <maven.gpg.plugin.version>3.2.4</maven.gpg.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
+        <maven.compiler.plugin.version.deployment>3.11.0</maven.compiler.plugin.version.deployment>
     </properties>
 
-    <!-- License (MANDATORY) -->
+    <!-- License -->
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -51,7 +65,7 @@
         </license>
     </licenses>
 
-    <!-- Developer info (MANDATORY) -->
+    <!-- Developer info -->
     <developers>
         <developer>
             <id>hexeditors</id>
@@ -60,12 +74,12 @@
         </developer>
     </developers>
 
-    <!-- SCM info (MANDATORY) -->
+    <!-- SCM info -->
     <scm>
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
         <url>https://github.com/HexEditors/quarkus-http</url>
-        <tag>v1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <!-- Dependency Management -->
