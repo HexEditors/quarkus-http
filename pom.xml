@@ -79,7 +79,7 @@
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
         <url>https://github.com/HexEditors/quarkus-http</url>
-        <tag>v${revision}</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <!-- Dependency Management -->
