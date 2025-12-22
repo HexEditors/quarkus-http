@@ -40,7 +40,7 @@ Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>com.github.hexeditors</groupId>
+    <groupId>io.github.hexeditors</groupId>
     <artifactId>quarkus-http</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -51,16 +51,16 @@ Add the dependency to your `pom.xml`:
 Add to your `build.gradle`:
 
 ```gradle
-implementation 'com.github.hexeditors:quarkus-http:1.0.0'
+implementation 'io.github.hexeditors:quarkus-http:1.0.0'
 ```
 
 ## Quick Start
 
 ```java
-package com.github.hexeditors;
+package io.github.hexeditors;
 
-import com.github.hexeditors.http.api.HttpClient;
-import com.github.hexeditors.http.api.HttpResponse;
+import io.github.hexeditors.http.api.HttpClient;
+import io.github.hexeditors.http.api.HttpResponse;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -276,11 +276,11 @@ http.correlation-id.header=X-Correlation-Id
 # =======================================================
 
 # Default log level for HTTP utils (default: INFO)
-logging.level.com.github.hexeditors.http=INFO
+logging.level.io.github.hexeditors.http=INFO
 
 # Enable TRACE logging for detailed request/response logging
 # WARNING: This will log masked headers and bodies
-logging.level.com.github.hexeditors.http=TRACE
+logging.level.io.github.hexeditors.http=TRACE
 ```
 
 ## Features
