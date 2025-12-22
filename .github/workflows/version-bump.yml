@@ -82,10 +82,11 @@ jobs:
 
     - name: Reset to snapshot version
       run: |
-        NEXT_PATCH=$(echo ${{ steps.release.outputs.release_version }} | awk -F. '{print $3 + 1}')
-        NEXT_VERSION="${{ steps.release.outputs.release_version }}.$NEXT_PATCH-SNAPSHOT"
-        sed -i "s|<revision>${{ steps.release.outputs.release_version }}</revision>|<revision>$NEXT_VERSION</revision>|" pom.xml
-        sed -i "s|<tag>v${{ steps.release.outputs.release_version }}</tag>|<tag>HEAD</tag>|" pom.xml
+        RELEASE="${{ steps.release.outputs.release_version }}"
+        NEXT_PATCH=$(echo $RELEASE | awk -F. '{print $3 + 1}')
+        NEXT_VERSION="$RELEASE.$NEXT_PATCH-SNAPSHOT"
+        sed -i "s|<revision>$RELEASE</revision>|<revision>$NEXT_VERSION</revision>|" pom.xml
+        sed -i "s|<tag>v$RELEASE</tag>|<tag>HEAD</tag>|" pom.xml
 
     - name: Commit snapshot version
       run: |
