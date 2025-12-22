@@ -89,6 +89,18 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- Distribution Management for Maven Central -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <!-- Build configuration -->
     <build>
         <plugins>
@@ -109,7 +121,7 @@
                 </executions>
             </plugin>
 
-            <!-- Source JAR (REQUIRED) -->
+            <!-- Source JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -124,7 +136,7 @@
                 </executions>
             </plugin>
 
-            <!-- Javadoc JAR (REQUIRED) -->
+            <!-- Javadoc JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
