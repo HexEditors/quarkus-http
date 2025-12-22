@@ -2,33 +2,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Coordinates -->
     <groupId>com.github.hexeditors</groupId>
     <artifactId>quarkus-http</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <!-- Required metadata for Maven Central -->
+    <name>Quarkus HTTP Utilities</name>
+    <description>Reusable Quarkus HTTP utilities and extensions</description>
+    <url>https://github.com/HexEditors/quarkus-http</url>
+
+    <!-- Modules -->
     <modules>
         <module>runtime</module>
         <module>deployment</module>
     </modules>
 
+    <!-- Properties -->
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Quarkus version -->
+        <!-- Quarkus -->
         <quarkus.version>3.8.4</quarkus.version>
 
-        <!-- Other dependencies -->
+        <!-- Dependency versions -->
         <lombok.version>1.18.32</lombok.version>
         <flogger.version>0.7.4</flogger.version>
         <mockito.version>5.11.0</mockito.version>
         <jacoco.version>0.8.11</jacoco.version>
+
+        <!-- Plugin versions -->
+        <maven.gpg.plugin.version>3.2.4</maven.gpg.plugin.version>
+        <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
     </properties>
 
+    <!-- License (MANDATORY) -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Developer info (MANDATORY) -->
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
+
+    <!-- SCM info (MANDATORY) -->
+    <scm>
+        <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
+        <url>https://github.com/HexEditors/quarkus-http</url>
+        <tag>v1.0.0</tag>
+    </scm>
+
+    <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
             <!-- Quarkus BOM -->
@@ -40,20 +80,69 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Our own module -->
+            <!-- Internal module dependency -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>quarkus-http-utils-runtime</artifactId>
+                <artifactId>quarkus-http-runtime</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/hexeditors/quarkus-http</url>
-        </repository>
-    </distributionManagement>
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+
+            <!-- GPG signing (REQUIRED for Maven Central) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Source JAR (REQUIRED) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Javadoc JAR (REQUIRED) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>
