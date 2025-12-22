@@ -8,7 +8,7 @@
     <!-- Coordinates -->
     <groupId>io.github.hexeditors</groupId>
     <artifactId>quarkus-http</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- Required metadata for Maven Central -->
@@ -24,6 +24,7 @@
 
     <!-- Properties -->
     <properties>
+        <revision>1.0.1-SNAPSHOT</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
