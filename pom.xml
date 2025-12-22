@@ -56,7 +56,7 @@
         <maven.compiler.plugin.version.deployment>3.11.0</maven.compiler.plugin.version.deployment>
     </properties>
 
-    <!-- License (MANDATORY) -->
+    <!-- License -->
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -65,7 +65,7 @@
         </license>
     </licenses>
 
-    <!-- Developer info (MANDATORY) -->
+    <!-- Developer info -->
     <developers>
         <developer>
             <id>hexeditors</id>
@@ -74,7 +74,7 @@
         </developer>
     </developers>
 
-    <!-- SCM info (MANDATORY) -->
+    <!-- SCM info -->
     <scm>
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
