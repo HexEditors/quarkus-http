@@ -26,6 +26,14 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
