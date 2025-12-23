@@ -24,7 +24,7 @@
 
     <!-- Properties -->
     <properties>
-        <revision>1.0.1-SNAPSHOT</revision>
+        <revision>0.1.0</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -50,6 +50,7 @@
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 
         <!-- Plugin versions -->
+        <central.publishing.plugin.version>0.9.0</central.publishing.plugin.version>
         <maven.gpg.plugin.version>3.2.4</maven.gpg.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
@@ -118,6 +119,17 @@
     <!-- Build configuration -->
     <build>
         <plugins>
+
+            <!-- Central Publishing Plugin -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central.publishing.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
 
             <!-- GPG signing (REQUIRED for Maven Central) -->
             <plugin>
