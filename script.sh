@@ -18,7 +18,15 @@ if [ $? -eq 0 ]; then
         
         if [ $? -eq 0 ]; then
             echo "✓ Installation successful!"
-            echo "Ready to deploy with: mvn clean deploy"
+            echo "Testing verify..."
+            mvn clean verify -Dgpg.skip=true
+
+            if [ $? -eq 0 ]; then
+                echo "✓ Verify successful!"
+                echo "Ready to deploy with: mvn clean deploy"
+            else
+                echo "✗ Verify failed"
+            fi
         else
             echo "✗ Installation failed"
         fi
