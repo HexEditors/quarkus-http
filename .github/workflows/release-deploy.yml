@@ -2,7 +2,7 @@ name: Release Deploy
 
 on:
   workflow_run:
-    workflows: ["Release Prepare"]
+    workflows: ["Release Tag"]
     types:
       - completed
 
@@ -20,18 +20,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         ref: main
-
-    - name: Extract release version
-      id: extract
-      run: |
-        RELEASE_VERSION=$(grep -oP '<revision>\K[^<]+' pom.xml)
-        echo "Release version: $RELEASE_VERSION"
-        echo "release_version=$RELEASE_VERSION" >> $GITHUB_OUTPUT
-
-    - name: Create and push tag
-      run: |
-        git tag v${{ steps.extract.outputs.release_version }}
-        git push origin v${{ steps.extract.outputs.release_version }}
 
     - name: Configure Maven settings
       run: |
@@ -57,6 +45,9 @@ jobs:
         echo "default-key $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)" > ~/.gnupg/gpg.conf
       env:
         GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+    - name: Run tests and verify
+      run: mvn test verify -Dgpg.skip=true
 
     - name: Deploy to Maven Central
       run: mvn clean deploy -Dgpg.passphrase=${GPG_PASSPHRASE}

@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.hexeditors</groupId>
         <artifactId>quarkus-http</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -25,6 +25,14 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
 
     <scm>
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
