@@ -38,16 +38,16 @@ jobs:
         <settings>
           <servers>
             <server>
-              <id>ossrh</id>
-              <username>${OSSRH_USERNAME}</username>
-              <password>${OSSRH_PASSWORD}</password>
+              <id>central</id>
+              <username>${CENTRAL_API_KEY}</username>
+              <password>${CENTRAL_API_SECRET}</password>
             </server>
           </servers>
         </settings>
         EOF
       env:
-        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        CENTRAL_API_KEY: ${{ secrets.CENTRAL_API_KEY }}
+        CENTRAL_API_SECRET: ${{ secrets.CENTRAL_API_SECRET }}
 
     - name: Import GPG key
       run: |
