@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.hexeditors</groupId>
         <artifactId>quarkus-http</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>quarkus-http-runtime</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Quarkus deployment dependencies -->

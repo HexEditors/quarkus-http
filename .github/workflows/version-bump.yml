@@ -1,0 +1,147 @@
+name: Version Bump
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version increment type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
+      new_version:
+        description: 'Specific version (optional, overrides version_type)'
+        required: false
+        type: string
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Check commit author
+        id: check-commit
+        run: |
+          # Skip if this is a version bump commit (to prevent infinite loop)
+          if git log -1 --pretty=format:'%an' | grep -q "GitHub Action"; then
+            echo "Skipping version bump for automated commit"
+            echo "skip=true" >> $GITHUB_OUTPUT
+          elif git log -1 --pretty=format:'%s' | grep -q "Bump version"; then
+            echo "Skipping version bump for version bump commit"
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "Proceeding with version bump"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Skip version bump
+        if: steps.check-commit.outputs.skip == 'true'
+        run: |
+          echo "Skipping version bump to prevent infinite loop"
+          exit 0
+      - name: Checkout repository
+        if: steps.check-commit.outputs.skip == 'false'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        if: steps.check-commit.outputs.skip == 'false'
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Get current version
+        if: steps.check-commit.outputs.skip == 'false'
+        id: current-version
+        run: |
+          CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Calculate new version
+        if: steps.check-commit.outputs.skip == 'false'
+        id: new-version
+        run: |
+          CURRENT_VERSION="${{ steps.current-version.outputs.current_version }}"
+          SPECIFIC_VERSION="${{ github.event.inputs.new_version }}"
+          VERSION_TYPE="${{ github.event.inputs.version_type || 'patch' }}"
+
+          if [ -n "$SPECIFIC_VERSION" ]; then
+            NEW_VERSION="$SPECIFIC_VERSION"
+            echo "Using specific version: $NEW_VERSION"
+          else
+            # Parse version components
+            IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+
+            case $VERSION_TYPE in
+              major)
+                NEW_VERSION="$((major + 1)).0.0"
+                ;;
+              minor)
+                NEW_VERSION="$major.$((minor + 1)).0"
+                ;;
+              patch)
+                NEW_VERSION="$major.$minor.$((patch + 1))"
+                ;;
+              *)
+                echo "Invalid version type: $VERSION_TYPE"
+                exit 1
+                ;;
+            esac
+            echo "Calculated new version: $NEW_VERSION"
+          fi
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update POM versions
+        if: steps.check-commit.outputs.skip == 'false'
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new_version }}"
+          echo "Setting new version to $NEW_VERSION"
+
+          # Use Maven versions plugin to update all project versions safely
+          mvn versions:set -DnewVersion="$NEW_VERSION" -DgenerateBackupPoms=false
+
+          # Update revision property in main pom.xml
+          sed -i "s|<revision>.*</revision>|<revision>$NEW_VERSION</revision>|" pom.xml
+
+      - name: Commit version bump
+        if: steps.check-commit.outputs.skip == 'false'
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new_version }}"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Check if there are changes to commit
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add -A
+          git commit -m "Bump version to $NEW_VERSION"
+
+      - name: Push changes
+        if: steps.check-commit.outputs.skip == 'false'
+        run: |
+          git push origin main
+
+      - name: Trigger deployment workflow (optional)
+        if: steps.check-commit.outputs.skip == 'false'
+        run: |
+          echo "Version bump completed. You can now manually trigger deployment with:"
+          echo "mvn clean deploy -P gpg"
+          NEW_VERSION="${{ steps.new-version.outputs.new_version }}"
+          echo "New version: $NEW_VERSION"
