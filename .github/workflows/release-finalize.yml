@@ -55,24 +55,10 @@ jobs:
         sed -i "s|<revision>$RELEASE</revision>|<revision>$NEXT_VERSION</revision>|" pom.xml
         sed -i "s|<tag>v$RELEASE</tag>|<tag>HEAD</tag>|" pom.xml
 
-    - name: Update parent version in runtime/pom.xml to snapshot
-      run: |
-        RELEASE="${{ steps.extract.outputs.release_version }}"
-        NEXT_PATCH=$(echo $RELEASE | awk -F. '{print $3 + 1}')
-        NEXT_VERSION="$RELEASE.$NEXT_PATCH-SNAPSHOT"
-        sed -i "s|<version>$RELEASE</version>|<version>$NEXT_VERSION</version>|" runtime/pom.xml
-
-    - name: Update parent version in deployment/pom.xml to snapshot
-      run: |
-        RELEASE="${{ steps.extract.outputs.release_version }}"
-        NEXT_PATCH=$(echo $RELEASE | awk -F. '{print $3 + 1}')
-        NEXT_VERSION="$RELEASE.$NEXT_PATCH-SNAPSHOT"
-        sed -i "s|<version>$RELEASE</version>|<version>$NEXT_VERSION</version>|" deployment/pom.xml
-
     - name: Commit snapshot version
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add pom.xml runtime/pom.xml deployment/pom.xml
+        git add pom.xml
         git commit -m "Prepare for next development [skip ci]" || echo "No changes to commit"
         git push
