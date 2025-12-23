@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.hexeditors</groupId>
         <artifactId>quarkus-http</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>quarkus-http-runtime</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- Quarkus deployment dependencies -->
@@ -65,26 +65,26 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>${vertx.version}</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web-client</artifactId>
-            <version>${vertx.version}</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>io.smallrye.reactive</groupId>
             <artifactId>smallrye-mutiny-vertx-web-client</artifactId>
-            <version>${smallrye.mutiny.vertx.web.client.version}</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- SmallRye Fault Tolerance -->
         <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>smallrye-fault-tolerance-api</artifactId>
-            <version>${smallrye.fault.tolerance.api.version}</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- Jackson deployment -->
@@ -99,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version.deployment}</version>
+                <version>1.0.1</version>
             </plugin>
         </plugins>
     </build>
