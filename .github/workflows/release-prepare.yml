@@ -45,10 +45,18 @@ jobs:
       run: |
         sed -i "s|<tag>HEAD</tag>|<tag>v${{ steps.release.outputs.release_version }}</tag>|" pom.xml
 
+    - name: Update parent version in runtime/pom.xml
+      run: |
+        sed -i "s|<version>.*</version>|<version>${{ steps.release.outputs.release_version }}</version>|" runtime/pom.xml
+
+    - name: Update parent version in deployment/pom.xml
+      run: |
+        sed -i "s|<version>.*</version>|<version>${{ steps.release.outputs.release_version }}</version>|" deployment/pom.xml
+
     - name: Commit release version
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add pom.xml
+        git add pom.xml runtime/pom.xml deployment/pom.xml
         git commit -m "Prepare release version ${{ steps.release.outputs.release_version }}" || echo "No changes to commit"
         git push
