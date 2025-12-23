@@ -26,6 +26,14 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
@@ -38,7 +46,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>quarkus-http-runtime</artifactId>
-            <version>1.0.1</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Quarkus deployment dependencies -->
@@ -57,26 +65,26 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>1.0.1</version>
+            <version>${vertx.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web-client</artifactId>
-            <version>1.0.1</version>
+            <version>${vertx.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.smallrye.reactive</groupId>
             <artifactId>smallrye-mutiny-vertx-web-client</artifactId>
-            <version>1.0.1</version>
+            <version>${smallrye.mutiny.vertx.web.client.version}</version>
         </dependency>
 
         <!-- SmallRye Fault Tolerance -->
         <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>smallrye-fault-tolerance-api</artifactId>
-            <version>1.0.1</version>
+            <version>${smallrye.fault.tolerance.api.version}</version>
         </dependency>
 
         <!-- Jackson deployment -->
@@ -91,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>1.0.1</version>
+                <version>${maven.compiler.plugin.version.deployment}</version>
             </plugin>
         </plugins>
     </build>
