@@ -14,6 +14,37 @@
     <artifactId>quarkus-http-runtime</artifactId>
     <packaging>jar</packaging>
 
+    <!-- Required metadata for Maven Central -->
+    <name>Quarkus HTTP Utilities - Runtime</name>
+    <description>Runtime module for Quarkus HTTP utilities and extensions</description>
+    <url>https://github.com/HexEditors/quarkus-http</url>
+
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Developer info -->
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
+
+    <!-- SCM info -->
+    <scm>
+        <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
+        <url>https://github.com/HexEditors/quarkus-http</url>
+        <tag>${project.version}</tag>
+    </scm>
+
     <dependencies>
         <!-- Quarkus Core - REQUIRED for all extensions -->
         <dependency>
