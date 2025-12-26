@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>io.github.hexeditors</groupId>
-        <artifactId>quarkus-http</artifactId>
+        <artifactId>quarkus-http-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <name>Quarkus HTTP Utilities - Deployment</name>
-    <description>Deployment module for Quarkus HTTP utilities and extensions</description>
+    <description>Build-time deployment module that configures and registers HTTP client extensions, audit processors, and PII masking for Quarkus applications</description>
     <url>https://github.com/HexEditors/quarkus-http</url>
 
     <licenses>

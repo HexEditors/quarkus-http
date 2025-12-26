@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.hexeditors</groupId>
+        <artifactId>quarkus-http-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>quarkus-http</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Quarkus HTTP Utilities</name>
+    <description>Convenience artifact for Quarkus HTTP extensions - includes both runtime and deployment modules for easy dependency management. Provides HTTP client, audit logging, PII masking, and correlation ID features.</description>
+    <url>https://github.com/HexEditors/quarkus-http</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>hexeditors</id>
+            <name>HexEditors</name>
+            <url>https://github.com/HexEditors</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/HexEditors/quarkus-http.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:HexEditors/quarkus-http.git</developerConnection>
+        <url>https://github.com/HexEditors/quarkus-http</url>
+        <tag>${project.version}</tag>
+    </scm>
+
+    <dependencies>
+        <!-- Include both runtime and deployment modules -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>quarkus-http-runtime</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>quarkus-http-deployment</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

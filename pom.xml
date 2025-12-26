@@ -7,19 +7,20 @@
 
     <!-- Coordinates -->
     <groupId>io.github.hexeditors</groupId>
-    <artifactId>quarkus-http</artifactId>
+    <artifactId>quarkus-http-parent</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- Required metadata for Maven Central -->
-    <name>Quarkus HTTP Utilities</name>
-    <description>Reusable Quarkus HTTP utilities and extensions</description>
+    <name>Quarkus HTTP Utilities - Parent</name>
+    <description>Parent POM for Quarkus HTTP Utilities - aggregates runtime and deployment modules for Quarkus extensions providing HTTP client functionality, audit logging, PII masking, and correlation ID support</description>
     <url>https://github.com/HexEditors/quarkus-http</url>
 
     <!-- Modules -->
     <modules>
         <module>runtime</module>
         <module>deployment</module>
+        <module>quarkus-http</module>
     </modules>
 
     <!-- Properties -->
@@ -95,7 +96,13 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Internal module dependency -->
+            <!-- Internal module dependencies -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>quarkus-http</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>quarkus-http-runtime</artifactId>
@@ -177,6 +184,10 @@
                 </executions>
                 <configuration>
                     <failOnError>false</failOnError>
+                    <doclint>none</doclint>
+                    <additionalJOptions>
+                        <additionalJOption>-Xdoclint:none</additionalJOption>
+                    </additionalJOptions>
                 </configuration>
             </plugin>
 
