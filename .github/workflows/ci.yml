@@ -24,7 +24,7 @@ jobs:
         cache: maven
 
     - name: Run tests and verify
-      run: mvn verify -Dgpg.skip=true
+      run: mvn verify -N -Dgpg.skip=true
 
   deploy:
     runs-on: ubuntu-latest
