@@ -2,6 +2,8 @@ package io.github.hexeditors.http.config;
 
 import io.smallrye.config.ConfigMapping;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -26,19 +28,14 @@ public interface TlsConfig {
     @io.smallrye.config.WithDefault("localhost,127.0.0.1")
     Set<String> insecureDomains();
 
-    /**
-     * The path to the trust store file.
-     *
-     * @return the trust store path, defaults to "certs/truststore.jks"
-     */
-    @io.smallrye.config.WithDefault("certs/truststore.jks")
-    String trustStorePath();
+
 
     /**
-     * The password for the trust store.
+     * Per-domain trust store configurations.
+     * Keys can be domain names or patterns (e.g., "*.example.com").
+     * Values contain the trust store path and password for that domain.
      *
-     * @return the trust store password, defaults to "changeit"
+     * @return map of domain to trust store configuration
      */
-    @io.smallrye.config.WithDefault("changeit")
-    String trustStorePassword();
+    Map<String, TrustStoreConfig> trustStores();
 }

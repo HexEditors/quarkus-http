@@ -198,12 +198,14 @@ http.tls.enabled=true
 # Default: localhost,127.0.0.1
 http.tls.insecure-domains=localhost,127.0.0.1,test.example.com
 
-# Path to trust store file (relative to resources folder)
-# Default: certs/truststore.jks
-http.tls.trust-store-path=certs/custom-truststore.jks
-
-# Trust store password (default: changeit)
-http.tls.trust-store-password=mypassword
+# Per-domain trust store configurations
+# Keys can be exact domain names or patterns (e.g., "*.example.com")
+# Each domain can have its own trust store path and password
+# If no trust store is configured for a domain, the JVM default trust store is used
+http.tls.trust-stores.api.example.com.path=certs/api-truststore.jks
+http.tls.trust-stores.api.example.com.password=secretpassword
+http.tls.trust-stores.*.internal.company.com.path=certs/internal-truststore.jks
+http.tls.trust-stores.*.internal.company.com.password=internalpass
 ```
 
 ### PII Masking Configuration
