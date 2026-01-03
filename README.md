@@ -42,7 +42,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>io.github.hexeditors</groupId>
     <artifactId>quarkus-http</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -51,7 +51,7 @@ Add the dependency to your `pom.xml`:
 Add to your `build.gradle`:
 
 ```gradle
-implementation 'io.github.hexeditors:quarkus-http:1.0.0'
+implementation 'io.github.hexeditors:quarkus-http:1.1.0'
 ```
 
 ## Quick Start
