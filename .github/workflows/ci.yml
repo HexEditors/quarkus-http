@@ -41,15 +41,44 @@ jobs:
           java-version: 17
           distribution: temurin
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << EOF
+          <settings>
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${{ secrets.MAVEN_CENTRAL_USERNAME }}</username>
+                <password>${{ secrets.MAVEN_CENTRAL_TOKEN }}</password>
+              </server>
+            </servers>
+            <profiles>
+              <profile>
+                <id>gpg</id>
+                <properties>
+                  <gpg.keyname>${{ secrets.GPG_KEY }}</gpg.keyname>
+                </properties>
+              </profile>
+            </profiles>
+          </settings>
+          EOF
+
       - name: Import GPG key
         run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          # Import GPG private key
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import --yes
+
+          # Configure GPG to use passphrase from environment
+          echo "${{ secrets.GPG_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 --pinentry-mode loopback --sign >/dev/null
+
+          # List keys to verify import
           gpg --list-keys
           gpg --list-secret-keys
 
       - name: Deploy to Maven Central
         run: |
-          mvn clean deploy -U -P gpg -DskipTests
+          mvn clean deploy -P gpg -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
