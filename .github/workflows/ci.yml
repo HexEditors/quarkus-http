@@ -47,11 +47,6 @@ jobs:
           gpg --list-keys
           gpg --list-secret-keys
 
-      - name: Extract Key
-        run: |
-          env | grep -i gpg
-          env | grep -i pass
-      
       - name: Deploy to Maven Central
         run: |
           mvn clean deploy -P gpg -DskipTests
